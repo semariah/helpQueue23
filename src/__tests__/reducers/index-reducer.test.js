@@ -1,8 +1,9 @@
 
-import rootReducer from './../../src/reducers/index';
-import selectedTicketReducer from '../../src/reducers/selectedTicketReducer';
-import ticketListReducer from '../../src/reducers/ticket-list-reducer';
+import rootReducer from '../../reducers/index';
+import selectedTicketReducer from '../../reducers/selectedTicketReducer';
+import ticketListReducer from '../../reducers/ticket-list-reducer';
 import { createStore } from 'redux';
+
 
 
 let store = createStore(rootReducer);

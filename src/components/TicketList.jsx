@@ -15,7 +15,7 @@ function TicketList(props){
           currentRouterPath={props.currentRouterPath}
           key={ticketId}
           ticketId={ticketId}
-          onTicketSelection={props.onTicketSelection}/>;
+          />;
       })}
     </div>
   );
@@ -23,8 +23,6 @@ function TicketList(props){
 
 TicketList.propTypes = {
   ticketList: PropTypes.object,
-  currentRouterPath: PropTypes.string,
-  onTicketSelection: PropTypes.func
+  currentRouterPath: PropTypes.string
 };
-
 export default TicketList;

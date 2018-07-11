@@ -1,4 +1,6 @@
 import selectedTicketReducer from '../../reducers/selectedTicketReducer';
+import c from '../../constants'
+
 
 describe('selectedTicketReducer', () => {
   test('should return default state if no action is recogonized', () => {
@@ -6,7 +8,7 @@ describe('selectedTicketReducer', () => {
   });
 
   test('should record which ticket has been selected', () => {
-    expect(selectedTicketReducer({}, {type: 'SELECT_TICKET', ticketId: 1})).toEqual(1);
+    expect(selectedTicketReducer({}, {type: c.SELECT_TICKET, ticketId: 1})).toEqual(1);
   });
 
 });
