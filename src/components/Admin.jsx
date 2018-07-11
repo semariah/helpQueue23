@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
 
+import { connect } from 'react-redux';
+
 function Admin(props){
+  const { ticketId} = props;
+  
   let optionalSelectedTicketContent = null;
   if (props.selectedTicket != null){
     optionalSelectedTicketContent =  <TicketDetail selectedTicket={props.ticketList[props.selectedTicket]}/>;
@@ -27,4 +31,4 @@ Admin.propTypes = {
   selectedTicket: PropTypes.string
 };
 
-export default Admin;
+export default connect()(Admin);
