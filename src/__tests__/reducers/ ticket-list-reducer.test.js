@@ -1,6 +1,7 @@
 import ticketListReducer from '../../reducers/ticket-list-reducer';
 import Moment from 'moment';
-import c from '../../constants';
+import constants from '../../constants';
+cosnt { c } = constants;
 
 describe('ticketListReducer', () => {
   let action;

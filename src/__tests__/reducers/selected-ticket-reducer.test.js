@@ -1,5 +1,6 @@
 import selectedTicketReducer from '../../reducers/selectedTicketReducer';
-import c from '../../constants'
+import constants from '../../constants';
+const { c } = constants;
 
 
 describe('selectedTicketReducer', () => {

@@ -15,7 +15,7 @@ function TicketList(props){
           currentRouterPath={props.currentRouterPath}
           key={ticketId}
           ticketId={ticketId}
-          />;
+        />;
       })}
     </div>
   );

@@ -8,9 +8,17 @@ import Moment from 'moment';
 import Admin from './Admin';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import c from '../constants'
+import constants from '../constants';
+const { c } = constants;
+import * as actions from './../actions';
 
 class App extends React.Component {
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    const { watchFirebaseTicketsRef } = actions;
+    dispatch(watchFirebaseTicketsRef());
+  }
 
   componentDidMount() {
     this.waitTimeUpdateTimer = setInterval(() =>
@@ -24,36 +32,36 @@ class App extends React.Component {
   }
 
   updateTicketElapsedWaitTime() {
-  const { dispatch } = this.props;
-  Object.keys(this.props.masterTicketList).map(ticketId => {
-    const ticket = this.props.masterTicketList[ticketId];
-    const newFormattedWaitTime = ticket.timeOpen.fromNow(true);
-    const action = {
-      type: c.UPDATE_TIME,
-      id: ticketId,
-      formattedWaitTime: newFormattedWaitTime
-    };
-    dispatch(action);
-  });
-}
-    // var newMasterTicketList = Object.assign({}, this.state.masterTicketList);
-    // Object.keys(newMasterTicketList).forEach(ticketId => {
-    //   newMasterTicketList[ticketId].formattedWaitTime = (newMasterTicketList[ticketId].timeOpen).fromNow(true);
-    // });
-    // this.setState({masterTicketList: newMasterTicketList});
+    const { dispatch } = this.props;
+    Object.keys(this.props.masterTicketList).map(ticketId => {
+      const ticket = this.props.masterTicketList[ticketId];
+      const newFormattedWaitTime = new Moment(ticket.timeOpen).from(new Moment());
+      const action = {
+        type: c.UPDATE_TIME,
+        id: ticketId,
+        formattedWaitTime: newFormattedWaitTime
+      };
+      dispatch(action);
+    });
+  }
+  // var newMasterTicketList = Object.assign({}, this.state.masterTicketList);
+  // Object.keys(newMasterTicketList).forEach(ticketId => {
+  //   newMasterTicketList[ticketId].formattedWaitTime = (newMasterTicketList[ticketId].timeOpen).fromNow(true);
+  // });
+  // this.setState({masterTicketList: newMasterTicketList});
 
   render(){
-     return (
-       <div>
-         <Header/>
-         <Switch>
-           <Route exact path='/' render={()=><TicketList ticketList={this.props.masterTicketList} />} />
-           <Route path='/newticket' render={()=><NewTicketControl />} />
-           <Route path='/admin' render={(props)=><Admin ticketList={this.props.masterTicketList} currentRouterPath={props.location.pathname}/>} />
-           <Route component={Error404} />
-         </Switch>
-       </div>
-     );
+    return (
+      <div>
+        <Header/>
+        <Switch>
+          <Route exact path='/' render={()=><TicketList ticketList={this.props.masterTicketList} />} />
+          <Route path='/newticket' render={()=><NewTicketControl />} />
+          <Route path='/admin' render={(props)=><Admin ticketList={this.props.masterTicketList} currentRouterPath={props.location.pathname}/>} />
+          <Route component={Error404} />
+        </Switch>
+      </div>
+    );
   }
 }
 
